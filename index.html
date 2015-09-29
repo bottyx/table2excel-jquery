@@ -15,13 +15,16 @@ $( document ).ready(function() {
  	$('#example').DataTable();
 
  	$("#exportExcel").click(function(){
-      $('<table>')
-         .append(
+    
+    //thead
+    var head = $("#example thead tr").clone().prependTo($("#example thead"));
 
-         	$("#example thead tr").clone().prependTo($("#example thead"))
-
-            //$("#example").DataTable().$('tr').clone()
-         )
+    //tbody
+    var content = $("#tmpTable").append($("#example").DataTable().$('tr').clone());
+    
+    //create copy Table
+    $('<table>')
+         .append(content.prepend(head))
          .table2excel({
             name: "Worksheet Name",
             filename: "SomeFile" //do not include extension
@@ -33,6 +36,8 @@ $( document ).ready(function() {
 <body>
 
 	<button id="exportExcel">Exportar</button>
+
+  <table id="tmpTable" style="display: none;"></table>
 
 	<table id="example" class="display" cellspacing="0" width="100%">
         <thead>
