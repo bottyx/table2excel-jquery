@@ -18,7 +18,7 @@ $( document ).ready(function() {
       $('<table>')
          .append(
 
-         	$("#example thead tr").prependTo($("#example tbody"))
+         	$("#example thead tr").clone().prependTo($("#example thead"))
 
             //$("#example").DataTable().$('tr').clone()
          )
